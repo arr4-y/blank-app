@@ -52,7 +52,8 @@ def download_and_extract_model():
     except zipfile.BadZipFile:
         return None, "El archivo descargado no es un archivo ZIP válido."
     
-    return os.path.join(extract_folder, 'best_model_saved.h5'), None
+    modelo_path = os.path.join(extract_folder, 'best_model_saved.h5')
+    return modelo_path, None
 
 # Mostrar spinner para el proceso de carga y configuración del modelo
 with st.spinner('Preparando el modelo, por favor espera...'):
@@ -79,7 +80,7 @@ with st.spinner('Preparando el modelo, por favor espera...'):
         # Cargar los pesos
         try:
             model.load_weights(modelo_path)
-            st.success("El modelo está listo para realizar predicciones.")
+            st.success("El modelo está listo para realizar predicciones.")  # Solo este mensaje se mostrará
         except Exception as e:
             st.error(f"Error al cargar los pesos del modelo: {e}")
 
@@ -105,10 +106,12 @@ if uploaded_file is not None:
             
             st.subheader("Probabilidades:")
             st.write("Probabilidad de neumonía:")
-            st.progress(prob_pneumonia / 100, text=f"{prob_pneumonia:.1f}%")
+            st.progress(prob_pneumonia / 100)
+            st.write(f"{prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
             
             st.write("Probabilidad de normal:")
-            st.progress((100 - prob_pneumonia) / 100, text=f"{100 - prob_pneumonia:.1f}%")
+            st.progress((100 - prob_pneumonia) / 100)
+            st.write(f"{100 - prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
 
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
