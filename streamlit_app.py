@@ -80,7 +80,7 @@ with st.spinner('Preparando el modelo, por favor espera...'):
         # Cargar los pesos
         try:
             model.load_weights(modelo_path)
-            st.success("El modelo está listo para realizar predicciones.")  # Solo este mensaje se mostrará
+            st.success("El modelo está listo para realizar predicciones.")
         except Exception as e:
             st.error(f"Error al cargar los pesos del modelo: {e}")
 
@@ -106,12 +106,12 @@ if uploaded_file is not None:
             
             st.subheader("Probabilidades:")
             st.write("Probabilidad de neumonía:")
-            st.progress(prob_pneumonia / 100)  # Eliminado el uso de `text`
-            st.write(f"{prob_pneumonia:.1f}%")  # Porcentaje mostrado con `st.write`
+            st.progress(prob_pneumonia / 100)  # Sin parámetro `text`
+            st.write(f"{prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
             
             st.write("Probabilidad de normal:")
-            st.progress((100 - prob_pneumonia) / 100)  # Eliminado el uso de `text`
-            st.write(f"{100 - prob_pneumonia:.1f}%")  # Porcentaje mostrado con `st.write`
+            st.progress((100 - prob_pneumonia) / 100)  # Sin parámetro `text`
+            st.write(f"{100 - prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
 
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
