@@ -106,12 +106,12 @@ if uploaded_file is not None:
             
             st.subheader("Probabilidades:")
             st.write("Probabilidad de neumonía:")
-            st.progress(prob_pneumonia / 100)
-            st.write(f"{prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
+            st.progress(prob_pneumonia / 100)  # Eliminado el uso de `text`
+            st.write(f"{prob_pneumonia:.1f}%")  # Porcentaje mostrado con `st.write`
             
             st.write("Probabilidad de normal:")
-            st.progress((100 - prob_pneumonia) / 100)
-            st.write(f"{100 - prob_pneumonia:.1f}%")  # Muestra el porcentaje debajo de la barra de progreso
+            st.progress((100 - prob_pneumonia) / 100)  # Eliminado el uso de `text`
+            st.write(f"{100 - prob_pneumonia:.1f}%")  # Porcentaje mostrado con `st.write`
 
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
